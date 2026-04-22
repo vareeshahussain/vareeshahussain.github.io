@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vareesha | Senior RPA Developer & Data Analytics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0d1b2a;
+      --navy-mid: #1b2d42;
+      --navy-light: #243b55;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --white: #f5f5f0;
+      --muted: #9aa5b4;
+      --card-bg: #162233;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--navy);
+      color: var(--white);
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(13, 27, 42, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+      padding: 1rem 2.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none;
+      font-size: 0.88rem; font-weight: 500; letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 6rem 2.5rem 4rem;
+      max-width: 900px; margin: 0 auto;
+      position: relative;
+    }
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--gold);
+      border: 1px solid rgba(201,168,76,0.35);
+      padding: 0.3rem 0.85rem; border-radius: 2px;
+      margin-bottom: 1.5rem;
+      opacity: 0; animation: fadeUp 0.6s 0.2s forwards;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 6vw, 4.8rem);
+      font-weight: 700; line-height: 1.1;
+      margin-bottom: 1.2rem;
+      opacity: 0; animation: fadeUp 0.6s 0.35s forwards;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero-sub {
+      font-size: 1.05rem; color: var(--muted);
+      max-width: 560px; margin-bottom: 2.5rem;
+      font-weight: 300;
+      opacity: 0; animation: fadeUp 0.6s 0.5s forwards;
+    }
+    .hero-btns {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp 0.6s 0.65s forwards;
+    }
+    .btn-primary {
+      background: var(--gold); color: var(--navy);
+      padding: 0.75rem 1.8rem; border-radius: 3px;
+      text-decoration: none; font-weight: 600; font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-outline {
+      border: 1px solid rgba(201,168,76,0.5); color: var(--gold);
+      padding: 0.75rem 1.8rem; border-radius: 3px;
+      text-decoration: none; font-weight: 500; font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--gold); background: rgba(201,168,76,0.07); transform: translateY(-2px); }
+
+    /* SECTIONS */
+    section { padding: 5rem 2.5rem; max-width: 900px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 600; margin-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+      padding-bottom: 1rem;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+    }
+    .about-text { font-size: 0.98rem; color: #c5cdd8; line-height: 1.85; }
+    .about-text p + p { margin-top: 1rem; }
+    .stats { display: flex; flex-direction: column; gap: 1.2rem; }
+    .stat-item { border-left: 2px solid var(--gold); padding-left: 1rem; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; color: var(--gold); line-height: 1;
+    }
+    .stat-label { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;
+    }
+    .skill-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(201,168,76,0.1);
+      border-radius: 4px; padding: 1.2rem 1.4rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .skill-card:hover { border-color: rgba(201,168,76,0.45); transform: translateY(-3px); }
+    .skill-category {
+      font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.6rem; font-weight: 500;
+    }
+    .skill-list { font-size: 0.88rem; color: #c5cdd8; line-height: 1.7; }
+
+    /* PROJECTS */
+    .projects-grid { display: grid; gap: 1.5rem; }
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(201,168,76,0.1);
+      border-radius: 4px; padding: 1.8rem 2rem;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 1rem; align-items: start;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .project-card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-3px); }
+    .project-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.75rem; color: var(--gold); opacity: 0.6;
+      margin-bottom: 0.5rem;
+    }
+    .project-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem;
+    }
+    .project-desc { font-size: 0.88rem; color: #9aa5b4; line-height: 1.7; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+    .tag {
+      font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+      background: rgba(201,168,76,0.1); color: var(--gold);
+      padding: 0.2rem 0.6rem; border-radius: 2px;
+    }
+    .project-impact { text-align: right; white-space: nowrap; }
+    .impact-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem; color: var(--gold); line-height: 1;
+    }
+    .impact-label { font-size: 0.7rem; color: var(--muted); margin-top: 0.2rem; }
+
+    /* CERTIFICATIONS */
+    .certs-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem;
+    }
+    .cert-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(201,168,76,0.1);
+      border-radius: 4px; padding: 1.4rem 1.6rem;
+      display: flex; align-items: flex-start; gap: 1rem;
+      transition: border-color 0.2s;
+    }
+    .cert-card:hover { border-color: rgba(201,168,76,0.4); }
+    .cert-icon {
+      width: 36px; height: 36px; flex-shrink: 0;
+      background: rgba(201,168,76,0.12);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+    .cert-name { font-size: 0.92rem; font-weight: 500; margin-bottom: 0.2rem; }
+    .cert-issuer { font-size: 0.78rem; color: var(--muted); }
+
+    /* CONTACT */
+    .contact-box {
+      background: var(--card-bg);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 4px; padding: 3rem;
+      text-align: center;
+    }
+    .contact-box p { color: var(--muted); font-size: 0.95rem; max-width: 480px; margin: 0.8rem auto 2rem; }
+    .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+
+    /* FOOTER */
+    footer {
+      text-align: center; padding: 2rem;
+      border-top: 1px solid rgba(201,168,76,0.1);
+      font-size: 0.78rem; color: var(--muted);
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .project-card { grid-template-columns: 1fr; }
+      .project-impact { text-align: left; }
+      nav { padding: 1rem 1.2rem; }
+      .nav-links { gap: 1.2rem; }
+      section { padding: 3.5rem 1.2rem; }
+      .hero { padding: 5rem 1.2rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Vareesha</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#certifications">Certs</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <span class="hero-tag">Senior RPA Developer &amp; Data Analytics Professional</span>
+    <h1>Automating the future,<br/><span>one workflow at a time.</span></h1>
+    <p class="hero-sub">
+      4+ years at TCS building production-grade RPA solutions with UiPath, Python, and cloud infrastructure — delivering measurable business outcomes at scale.
+    </p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label">About Me</div>
+    <div class="section-title reveal">Who I Am</div>
+    <div class="about-grid reveal">
+      <div class="about-text">
+        <p>
+          I'm a Senior RPA Developer and Data Analytics professional at Tata Consultancy Services (TCS), where I've been building intelligent automation solutions since July 2021.
+        </p>
+        <p>
+          My work spans UiPath automation development, Python-based scripting, data analytics with SQL and Power BI, and cloud infrastructure on GCP — bridging the gap between business processes and cutting-edge automation technology.
+        </p>
+        <p>
+          I hold multiple UiPath certifications including Agentic AI, and have a track record of winning hackathons and delivering production automations that drive real business value.
+        </p>
+      </div>
+      <div class="stats">
+        <div class="stat-item">
+          <div class="stat-num">4.5+</div>
+          <div class="stat-label">Years at TCS</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">3</div>
+          <div class="stat-label">UiPath Certifications</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">🏆</div>
+          <div class="stat-label">Hackathon Winner</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Hours Automated</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-label">Technical Skills</div>
+    <div class="section-title reveal">What I Work With</div>
+    <div class="skills-grid reveal">
+      <div class="skill-card">
+        <div class="skill-category">RPA</div>
+        <div class="skill-list">UiPath Studio<br/>Orchestrator<br/>REFramework<br/>Maestro / Agentic AI</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-category">Programming</div>
+        <div class="skill-list">Python<br/>Selenium<br/>pyodbc / requests<br/>pandas / NumPy</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-category">Data & Analytics</div>
+        <div class="skill-list">SQL (MS SQL Server)<br/>Power BI<br/>Data Pipelines<br/>Reporting & Dashboards</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-category">Cloud & Infra</div>
+        <div class="skill-list">Google Cloud (GCP)<br/>BigQuery<br/>API Integration<br/>ngrok / Tunneling</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-category">Tools & Platforms</div>
+        <div class="skill-list">Ignio<br/>Git / GitHub<br/>Postman<br/>REST APIs</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-category">Soft Skills</div>
+        <div class="skill-list">Cross-functional Leadership<br/>Stakeholder Management<br/>Process Analysis<br/>Documentation</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-label">Projects</div>
+    <div class="section-title reveal">What I've Built</div>
+    <div class="projects-grid">
+
+      <div class="project-card reveal">
+        <div>
+          <div class="project-num">01</div>
+          <div class="project-title">Nexpose IP Validation Automation</div>
+          <div class="project-desc">
+            Built a Python RPA script integrating pyodbc, Selenium, requests, and the Ignio orchestration platform to automate IP validation and filtering workflows — significantly reducing manual analyst effort.
+          </div>
+          <div class="project-tags">
+            <span class="tag">Python</span><span class="tag">Selenium</span>
+            <span class="tag">pyodbc</span><span class="tag">Ignio</span><span class="tag">REST API</span>
+          </div>
+        </div>
+        <div class="project-impact">
+          <div class="impact-num">↓</div>
+          <div class="impact-label">Manual effort<br/>eliminated</div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div>
+          <div class="project-num">02</div>
+          <div class="project-title">SQL Server → GCP Migration Connector</div>
+          <div class="project-desc">
+            Designed connectivity between an on-premise MS SQL Server instance and Google Cloud Platform using ngrok tunneling to a GCP VM, enabling seamless BigQuery integration for analytics workloads.
+          </div>
+          <div class="project-tags">
+            <span class="tag">GCP</span><span class="tag">BigQuery</span>
+            <span class="tag">SQL Server</span><span class="tag">ngrok</span>
+          </div>
+        </div>
+        <div class="project-impact">
+          <div class="impact-num">☁️</div>
+          <div class="impact-label">Cloud-ready<br/>pipeline</div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div>
+          <div class="project-num">03</div>
+          <div class="project-title">Enterprise UiPath REFramework Automation</div>
+          <div class="project-desc">
+            Developed production-grade attended and unattended UiPath bots using REFramework for enterprise clients at TCS. Integrated with Orchestrator for scheduling, queue management, and exception handling.
+          </div>
+          <div class="project-tags">
+            <span class="tag">UiPath</span><span class="tag">REFramework</span>
+            <span class="tag">Orchestrator</span><span class="tag">VB.Net</span>
+          </div>
+        </div>
+        <div class="project-impact">
+          <div class="impact-num">FTE</div>
+          <div class="impact-label">Savings<br/>delivered</div>
+        </div>
+      </div>
+
+      <!-- PLACEHOLDER — replace with your own project -->
+      <div class="project-card reveal">
+        <div>
+          <div class="project-num">04</div>
+          <div class="project-title" style="color:#556070; font-style:italic;">✏️ Add Your Project Here</div>
+          <div class="project-desc" style="color:#445060; font-style:italic;">
+            Describe the problem, your solution, and the outcome. Replace this card with one of your real projects.
+          </div>
+          <div class="project-tags">
+            <span class="tag" style="opacity:0.4;">Your Tag</span>
+          </div>
+        </div>
+        <div class="project-impact">
+          <div class="impact-num" style="opacity:0.3;">—</div>
+          <div class="impact-label">Your<br/>metric</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <div class="section-label">Credentials</div>
+    <div class="section-title reveal">Certifications</div>
+    <div class="certs-grid reveal">
+      <div class="cert-card">
+        <div class="cert-icon">🎓</div>
+        <div>
+          <div class="cert-name">UiPath Automation Developer Associate</div>
+          <div class="cert-issuer">UiPath</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🏅</div>
+        <div>
+          <div class="cert-name">UiPath Automation Developer Professional</div>
+          <div class="cert-issuer">UiPath</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🤖</div>
+        <div>
+          <div class="cert-name">UiPath Agentic AI Developer</div>
+          <div class="cert-issuer">UiPath</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🏆</div>
+        <div>
+          <div class="cert-name">Hackathon Winner</div>
+          <div class="cert-issuer">✏️ Add event name</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-label">Contact</div>
+    <div class="section-title reveal">Let's Connect</div>
+    <div class="contact-box reveal">
+      <p>Open to Senior RPA Developer and Data Analytics opportunities. Feel free to reach out via LinkedIn or email.</p>
+      <div class="contact-links">
+        <a href="https://linkedin.com/in/YOUR-LINKEDIN-URL" target="_blank" class="btn-primary">LinkedIn</a>
+        <a href="mailto:YOUR-EMAIL@gmail.com" class="btn-outline">Email Me</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Vareesha &nbsp;·&nbsp; Hosted on GitHub Pages</p>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
